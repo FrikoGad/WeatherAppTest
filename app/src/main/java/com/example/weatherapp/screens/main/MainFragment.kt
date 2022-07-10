@@ -89,6 +89,7 @@ class MainFragment : ScopedFragment(), KodeinAware {
 
     private fun bindUI() = launch {
         val currentWeather = viewModel.weather.await()
+
         currentWeather.observe(this@MainFragment, Observer {
             if (it == null) return@Observer
             val tStr = it.temperature.toInt().toString()
@@ -96,6 +97,12 @@ class MainFragment : ScopedFragment(), KodeinAware {
             tv_current_temp.text = "${tStr}${GRAD}"
             tv_condition.text = it.conditionText
             tv_feels_like.text = "${FEELS_LIKE}${flStr}${GRAD}"
+
+            group_loading.visibility = View.GONE
         })
+    }
+
+    private fun updateLocation(location: String) {
+        tv_location.text = location
     }
 }
