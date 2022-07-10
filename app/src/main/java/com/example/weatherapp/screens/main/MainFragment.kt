@@ -1,9 +1,7 @@
 package com.example.weatherapp.screens.main
 
 import android.Manifest
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,18 +11,18 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.example.weatherapp.adapters.ViewPagerAdapter
 import com.example.weatherapp.base.ScopedFragment
+import com.example.weatherapp.data.network.WeatherNetworkDataSource
 import com.example.weatherapp.databinding.FragmentMainBinding
 import com.example.weatherapp.screens.days.DaysFragment
 import com.example.weatherapp.screens.hours.HoursFragment
+import com.example.weatherapp.utils.FEELS_LIKE
+import com.example.weatherapp.utils.GRAD
 import com.example.weatherapp.utils.isPermissionGranted
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_main.*
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
@@ -35,6 +33,7 @@ class MainFragment : ScopedFragment(), KodeinAware {
     private val viewModelFactory: MainFragmentViewModelFactory by instance()
 
     private lateinit var viewModel: MainFragmentViewModel
+    private lateinit var weather: WeatherNetworkDataSource
 
     private val fragmentList = listOf(
         HoursFragment.newInstance(),
@@ -61,6 +60,7 @@ class MainFragment : ScopedFragment(), KodeinAware {
         checkPermission()
         viewModel = ViewModelProvider(this, viewModelFactory)
             .get(MainFragmentViewModel::class.java)
+        bindUI()
         init()
     }
 
@@ -91,7 +91,11 @@ class MainFragment : ScopedFragment(), KodeinAware {
         val currentWeather = viewModel.weather.await()
         currentWeather.observe(this@MainFragment, Observer {
             if (it == null) return@Observer
-            tv_city.text = it.toString()
+            val tStr = it.temperature.toInt().toString()
+            val flStr = it.feelsLikeTemperature.toInt().toString()
+            tv_current_temp.text = "${tStr}${GRAD}"
+            tv_condition.text = it.conditionText
+            tv_feels_like.text = "${FEELS_LIKE}${flStr}${GRAD}"
         })
     }
 }

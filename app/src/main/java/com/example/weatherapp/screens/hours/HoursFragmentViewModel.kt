@@ -1,4 +1,6 @@
 package com.example.weatherapp.screens.hours
 
-class HoursFragmentViewModel {
+import com.example.weatherapp.data.repository.ForecastRepository
+
+class HoursFragmentViewModel(forecastRepository: ForecastRepository) {
 }

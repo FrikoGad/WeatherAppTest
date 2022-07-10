@@ -16,6 +16,6 @@ class MetricCurrentWeatherEntry (
     @ColumnInfo(name = "feelslike_c")
     override val feelsLikeTemperature: Double,
     @ColumnInfo(name = "vis_miles")
-    override val visibilityDistance: Double
+    override val visibilityDistance: Double,
 
 ) : UnitSpecificCurrentWeatherEntry

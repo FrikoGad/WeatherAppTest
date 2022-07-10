@@ -81,7 +81,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_city" />
 
             <TextView
-                android:id="@+id/item_condition"
+                android:id="@+id/tv_condition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aubrey"
@@ -93,16 +93,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_current_temp" />
 
             <TextView
-                android:id="@+id/tv_max_min"
+                android:id="@+id/tv_feels_like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aubrey"
-                android:text="28°C/15°C"
+                android:text="Feels like 25°C"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/item_condition" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_condition" />
 
             <ImageButton
                 android:id="@+id/ib_search"
@@ -114,7 +114,7 @@
                 android:src="@drawable/ic_search"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/item_condition" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_condition" />
 
             <ImageButton
                 android:id="@+id/ib_sync"

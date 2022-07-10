@@ -16,6 +16,6 @@ class ImperialCurrentWeatherEntry (
     @ColumnInfo(name = "feelslike_f")
     override val feelsLikeTemperature: Double,
     @ColumnInfo(name = "vis_km")
-    override val visibilityDistance: Double
+    override val visibilityDistance: Double,
 
 ) : UnitSpecificCurrentWeatherEntry
