@@ -11,10 +11,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.weatherapp.adapters.ViewPagerAdapter
 import com.example.weatherapp.base.ScopedFragment
 import com.example.weatherapp.data.network.WeatherNetworkDataSource
 import com.example.weatherapp.databinding.FragmentMainBinding
+import com.example.weatherapp.internal.glide.ForecastAppGlideModule
 import com.example.weatherapp.screens.days.DaysFragment
 import com.example.weatherapp.screens.hours.HoursFragment
 import com.example.weatherapp.utils.*
@@ -92,13 +94,17 @@ class MainFragment : ScopedFragment(), KodeinAware {
             if (it == null) return@Observer
 
             group_loading.visibility = View.GONE
-            updateLocation("St. Peterburg")
+            updateLocation("St. Petersburg")
             updateTemp(it.temperature, it.feelsLikeTemperature)
             updateCondition(it.conditionText)
             updatePrecipitation(it.precipitationVolume)
             updateWind(it.windDirection, it.windSpeed)
             updateVisibility(it.visibilityDistance)
             updateTime(it.updateTime)
+
+            Glide.with(this@MainFragment)
+                .load("$HTTPS${it.conditionIconUrl}")
+                .into(img_condition)
         })
     }
 
@@ -139,6 +145,6 @@ class MainFragment : ScopedFragment(), KodeinAware {
     }
 
     private fun updateTime(updateTime: String) {
-        tv_time.text = "$updateTime"
+        tv_time.text = updateTime
     }
 }

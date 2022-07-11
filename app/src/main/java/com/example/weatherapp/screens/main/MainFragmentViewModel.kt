@@ -1,7 +1,5 @@
 package com.example.weatherapp.screens.main
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import com.example.weatherapp.data.repository.ForecastRepository
 import com.example.weatherapp.internal.UnitSystem

@@ -42,7 +42,7 @@ class ForecastRepositoryImpl(
 
     private suspend fun fetchCurrentWeather() {
         weatherNetworkDataSourse.fetchCurrentWeather(
-            "St. Peterburg",
+            "St. Petersburg",
             "no"
         )
     }

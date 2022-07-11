@@ -82,7 +82,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="12dp"
                 android:background="@null"
                 android:src="@drawable/ic_wind"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -109,11 +109,15 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
-                android:id="@+id/img_weather"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:id="@+id/img_condition"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_marginStart="48dp"
+                android:layout_marginBottom="20dp"
                 android:src="@drawable/ic_launcher_foreground"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_current_temp"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -147,7 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="12dp"
                 android:fontFamily="@font/aubrey"
                 android:text="0.0 mph"
                 android:textColor="@color/white"
@@ -159,20 +163,21 @@
                 android:id="@+id/tv_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:fontFamily="@font/aubrey"
                 android:text="St. Peterburg"
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/img_weather" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_time" />
 
             <TextView
                 android:id="@+id/tv_current_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aubrey"
-                android:text="20°C"
+                android:text="10°C"
                 android:textColor="@color/white"
                 android:textSize="72sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -195,34 +200,26 @@
                 android:id="@+id/tv_feels_like_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:fontFamily="@font/aubrey"
                 android:text="Feels like 25°C"
                 android:textColor="@color/white"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_condition" />
 
             <ImageButton
-                android:id="@+id/ib_search"
+                android:id="@+id/ib_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@null"
-                android:src="@drawable/ic_search"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/ib_sync"
-                app:layout_constraintTop_toBottomOf="@+id/tv_condition" />
-
-            <ImageButton
-                android:id="@+id/ib_sync"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:background="@null"
-                android:src="@drawable/ic_sync"
+                android:src="@drawable/ic_settings"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/ib_search" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
