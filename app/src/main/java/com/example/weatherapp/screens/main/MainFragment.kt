@@ -17,9 +17,7 @@ import com.example.weatherapp.data.network.WeatherNetworkDataSource
 import com.example.weatherapp.databinding.FragmentMainBinding
 import com.example.weatherapp.screens.days.DaysFragment
 import com.example.weatherapp.screens.hours.HoursFragment
-import com.example.weatherapp.utils.FEELS_LIKE
-import com.example.weatherapp.utils.GRAD
-import com.example.weatherapp.utils.isPermissionGranted
+import com.example.weatherapp.utils.*
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.coroutines.launch
@@ -92,17 +90,55 @@ class MainFragment : ScopedFragment(), KodeinAware {
 
         currentWeather.observe(this@MainFragment, Observer {
             if (it == null) return@Observer
-            val tStr = it.temperature.toInt().toString()
-            val flStr = it.feelsLikeTemperature.toInt().toString()
-            tv_current_temp.text = "${tStr}${GRAD}"
-            tv_condition.text = it.conditionText
-            tv_feels_like.text = "${FEELS_LIKE}${flStr}${GRAD}"
 
             group_loading.visibility = View.GONE
+            updateLocation("St. Peterburg")
+            updateTemp(it.temperature, it.feelsLikeTemperature)
+            updateCondition(it.conditionText)
+            updatePrecipitation(it.precipitationVolume)
+            updateWind(it.windDirection, it.windSpeed)
+            updateVisibility(it.visibilityDistance)
+            updateTime(it.updateTime)
         })
+    }
+
+    private fun chooseLocalizedUnitAbbreviation(metric: String, imperial: String): String {
+        return if (viewModel.isMetric) metric else imperial
     }
 
     private fun updateLocation(location: String) {
         tv_location.text = location
+    }
+
+    private fun updateTemp(temperature: Double, feelsLike: Double) {
+        val unitAbbreviation = chooseLocalizedUnitAbbreviation(GRAD, FAHRENHEIT)
+        tv_current_temp.text = "${temperature.toInt()}$unitAbbreviation"
+        tv_feels_like_temp.text = "$FEELS_LIKE${feelsLike.toInt()}$unitAbbreviation"
+    }
+
+    private fun updateCondition(condition: String) {
+        tv_condition.text = condition
+    }
+
+    private fun updatePrecipitation(precipitation: Double) {
+        val unitAbbreviation = chooseLocalizedUnitAbbreviation(
+            PRECIPITATION_MM, PRECIPITATION_IN)
+        tv_precipitation.text = "${precipitation.toInt()} $unitAbbreviation"
+    }
+
+    private fun updateWind(windDirection: String, windSpeed: Double) {
+        val unitAbbreviation = chooseLocalizedUnitAbbreviation(
+            WIND_KPH, WIND_MPH)
+        tv_wind.text = "$windDirection, ${windSpeed.toInt()} $unitAbbreviation"
+    }
+
+    private fun updateVisibility(visibilityDistance: Double) {
+        val unitAbbreviation = chooseLocalizedUnitAbbreviation(
+            VISIBILITY_KM, VISIBILITY_MI)
+        tv_visibility.text = "${visibilityDistance.toInt()} $unitAbbreviation"
+    }
+
+    private fun updateTime(updateTime: String) {
+        tv_time.text = "$updateTime"
     }
 }

@@ -9,13 +9,16 @@ class ImperialCurrentWeatherEntry (
     override val conditionText: String,
     @ColumnInfo(name = "condition_icon")
     override val conditionIconUrl: String,
-    @ColumnInfo(name = "wind_mph")
+    @ColumnInfo(name = "wind_dir")
     override val windDirection: String,
     @ColumnInfo(name = "precip_in")
     override val precipitationVolume: Double,
     @ColumnInfo(name = "feelslike_f")
     override val feelsLikeTemperature: Double,
-    @ColumnInfo(name = "vis_km")
+    @ColumnInfo(name = "vis_miles")
     override val visibilityDistance: Double,
-
+    @ColumnInfo(name = "wind_mph")
+    override val windSpeed: Double,
+    @ColumnInfo(name = "last_updated")
+    override val updateTime: String
 ) : UnitSpecificCurrentWeatherEntry

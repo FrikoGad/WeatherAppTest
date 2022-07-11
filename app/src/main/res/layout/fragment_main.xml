@@ -66,7 +66,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tv_data"
+                android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -78,12 +78,82 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
+                android:id="@+id/img_wind"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="16dp"
+                android:background="@null"
+                android:src="@drawable/ic_wind"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/img_precipitation"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/ic_precipitation"
+                app:layout_constraintBottom_toTopOf="@+id/img_wind"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/img_visibility"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/ic_visibility"
+                app:layout_constraintBottom_toTopOf="@+id/img_precipitation"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
                 android:id="@+id/img_weather"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/ic_launcher_foreground"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_precipitation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/aubrey"
+                android:text="0.0 in"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_wind"
+                app:layout_constraintStart_toEndOf="@+id/img_precipitation" />
+
+            <TextView
+                android:id="@+id/tv_visibility"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/aubrey"
+                android:text="9.0 mi"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_precipitation"
+                app:layout_constraintStart_toEndOf="@+id/img_visibility" />
+
+            <TextView
+                android:id="@+id/tv_wind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/aubrey"
+                android:text="0.0 mph"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_wind" />
 
             <TextView
                 android:id="@+id/tv_location"
@@ -122,7 +192,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_current_temp" />
 
             <TextView
-                android:id="@+id/tv_feels_like"
+                android:id="@+id/tv_feels_like_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aubrey"
@@ -137,12 +207,11 @@
                 android:id="@+id/ib_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginBottom="10dp"
                 android:background="@null"
                 android:src="@drawable/ic_search"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ib_sync"
                 app:layout_constraintTop_toBottomOf="@+id/tv_condition" />
 
             <ImageButton
