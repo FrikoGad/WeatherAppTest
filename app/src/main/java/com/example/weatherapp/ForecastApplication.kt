@@ -7,6 +7,8 @@ import com.example.weatherapp.data.network.ConnectivityInterceptor
 import com.example.weatherapp.data.network.WeatherNetworkDataSource
 import com.example.weatherapp.data.network.WeatherNetworkDataSourceImpl
 import com.example.weatherapp.data.network.response.ConnectivityInterceptorImpl
+import com.example.weatherapp.data.provider.UnitProvider
+import com.example.weatherapp.data.provider.UnitProviderImpl
 import com.example.weatherapp.data.repository.ForecastRepository
 import com.example.weatherapp.data.repository.ForecastRepositoryImpl
 import com.example.weatherapp.screens.main.MainFragmentViewModelFactory
@@ -29,7 +31,8 @@ class ForecastApplication : Application(), KodeinAware {
         bind() from singleton { ApiService(instance()) }
         bind<WeatherNetworkDataSource>() with singleton { WeatherNetworkDataSourceImpl(instance()) }
         bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(), instance()) }
-        bind() from provider { MainFragmentViewModelFactory(instance()) }
+        bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
+        bind() from provider { MainFragmentViewModelFactory(instance(), instance()) }
     }
 
     override fun onCreate() {

@@ -12,13 +12,14 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.example.weatherapp.R
 import com.example.weatherapp.adapters.ViewPagerAdapter
 import com.example.weatherapp.base.ScopedFragment
 import com.example.weatherapp.data.network.WeatherNetworkDataSource
 import com.example.weatherapp.databinding.FragmentMainBinding
-import com.example.weatherapp.internal.glide.ForecastAppGlideModule
 import com.example.weatherapp.screens.days.DaysFragment
 import com.example.weatherapp.screens.hours.HoursFragment
+import com.example.weatherapp.screens.settings.SettingsFragment
 import com.example.weatherapp.utils.*
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -62,6 +63,7 @@ class MainFragment : ScopedFragment(), KodeinAware {
             .get(MainFragmentViewModel::class.java)
         bindUI()
         init()
+        clickOnSettings()
     }
 
     private fun init() = with(binding) {
@@ -128,23 +130,35 @@ class MainFragment : ScopedFragment(), KodeinAware {
 
     private fun updatePrecipitation(precipitation: Double) {
         val unitAbbreviation = chooseLocalizedUnitAbbreviation(
-            PRECIPITATION_MM, PRECIPITATION_IN)
+            PRECIPITATION_MM, PRECIPITATION_IN
+        )
         tv_precipitation.text = "${precipitation.toInt()} $unitAbbreviation"
     }
 
     private fun updateWind(windDirection: String, windSpeed: Double) {
         val unitAbbreviation = chooseLocalizedUnitAbbreviation(
-            WIND_KPH, WIND_MPH)
+            WIND_KPH, WIND_MPH
+        )
         tv_wind.text = "$windDirection, ${windSpeed.toInt()} $unitAbbreviation"
     }
 
     private fun updateVisibility(visibilityDistance: Double) {
         val unitAbbreviation = chooseLocalizedUnitAbbreviation(
-            VISIBILITY_KM, VISIBILITY_MI)
+            VISIBILITY_KM, VISIBILITY_MI
+        )
         tv_visibility.text = "${visibilityDistance.toInt()} $unitAbbreviation"
     }
 
     private fun updateTime(updateTime: String) {
         tv_time.text = updateTime
+    }
+
+    private fun clickOnSettings() {
+        img_settings.setOnClickListener {
+            activity!!.supportFragmentManager.beginTransaction()
+                .replace(R.id.placeHolder, SettingsFragment())
+                .addToBackStack(null)
+                .commit()
+        }
     }
 }
