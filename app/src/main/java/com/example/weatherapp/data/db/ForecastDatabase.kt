@@ -6,10 +6,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.weatherapp.data.CurrentWeatherDao
 import com.example.weatherapp.data.db.entity.current.Current
+import com.example.weatherapp.data.db.entity.current.Location
 
-@Database(entities = [Current::class], version = 1)
+@Database(
+    entities = [Current::class, Location::class]
+    , version = 2)
 abstract class ForecastDatabase : RoomDatabase() {
     abstract fun currentWeatherDao(): CurrentWeatherDao
+    abstract fun weatherLocationDao(): WeatherLocationDao
 
     companion object {
         @Volatile private var instance: ForecastDatabase ?= null

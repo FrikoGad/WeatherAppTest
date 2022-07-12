@@ -1,11 +1,9 @@
 package com.example.weatherapp.data.db.entity.current
 
-import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-
-const val CURRENT_WEATHER_ID = 0
+import com.example.weatherapp.utils.CURRENT_WEATHER_ID
 
 @Entity(tableName = "current_weather")
 data class Current(

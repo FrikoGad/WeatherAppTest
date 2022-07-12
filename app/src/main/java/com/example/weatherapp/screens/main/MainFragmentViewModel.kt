@@ -1,7 +1,6 @@
 package com.example.weatherapp.screens.main
 
 import androidx.lifecycle.ViewModel
-import androidx.room.PrimaryKey
 import com.example.weatherapp.data.provider.UnitProvider
 import com.example.weatherapp.data.repository.ForecastRepository
 import com.example.weatherapp.internal.UnitSystem
@@ -19,5 +18,9 @@ class MainFragmentViewModel(
 
     val weather by lazyDeferred {
         forecastRepository.getCurrentWeather(isMetric)
+    }
+
+    val weatherLocation by lazyDeferred {
+        forecastRepository.getWeatherLocation()
     }
 }
