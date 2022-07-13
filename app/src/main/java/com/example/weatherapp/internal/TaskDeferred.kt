@@ -11,8 +11,8 @@ fun <T> Task<T>.asDeferred(): Deferred<T> {
         deferred.complete(result)
     }
 
-    this.addOnFailureListener { exeption ->
-        deferred.completeExceptionally(exeption)
+    this.addOnFailureListener { exception ->
+        deferred.completeExceptionally(exception)
     }
 
     return deferred

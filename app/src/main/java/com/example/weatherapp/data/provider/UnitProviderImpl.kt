@@ -1,8 +1,6 @@
 package com.example.weatherapp.data.provider
 
 import android.content.Context
-import android.content.SharedPreferences
-import androidx.preference.PreferenceManager
 import com.example.weatherapp.internal.UnitSystem
 import com.example.weatherapp.utils.UNIT_SYSTEM
 

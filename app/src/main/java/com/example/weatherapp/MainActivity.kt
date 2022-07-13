@@ -49,8 +49,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
     private fun bindLocationManager() {
         LifeCycleBoundLocationManager(this,
             fusedLocationProviderClient,
-            locationCallback
-        )
+            locationCallback)
     }
 
     private fun requestLocationPermission() {

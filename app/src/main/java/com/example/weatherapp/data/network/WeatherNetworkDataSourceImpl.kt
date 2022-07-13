@@ -3,7 +3,6 @@ package com.example.weatherapp.data.network
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.weatherapp.data.db.entity.current.Current
 import com.example.weatherapp.data.network.response.WeatherResponse
 import com.example.weatherapp.internal.NoConnectivityException
 
