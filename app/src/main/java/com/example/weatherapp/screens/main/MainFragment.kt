@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide
 import com.example.weatherapp.R
 import com.example.weatherapp.adapters.ViewPagerAdapter
 import com.example.weatherapp.base.ScopedFragment
-import com.example.weatherapp.data.network.WeatherNetworkDataSource
 import com.example.weatherapp.databinding.FragmentMainBinding
 import com.example.weatherapp.screens.days.DaysFragment
 import com.example.weatherapp.screens.hours.HoursFragment
@@ -29,8 +28,8 @@ class MainFragment : ScopedFragment(), KodeinAware {
     override val kodein by closestKodein()
     private val viewModelFactory: MainFragmentViewModelFactory by instance()
 
+    private lateinit var binding: FragmentMainBinding
     private lateinit var viewModel: MainFragmentViewModel
-    private lateinit var weather: WeatherNetworkDataSource
 
     private val fragmentList = listOf(
         HoursFragment.newInstance(),
@@ -40,8 +39,6 @@ class MainFragment : ScopedFragment(), KodeinAware {
         "Hours",
         "Days"
     )
-
-    private lateinit var binding: FragmentMainBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
