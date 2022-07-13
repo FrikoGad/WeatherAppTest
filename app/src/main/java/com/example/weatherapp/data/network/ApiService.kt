@@ -13,9 +13,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-// https://api.weatherapi.com/v1/forecast.json?key=f1e461295192489aa71174448220607&q=St. Peterburg&days=1&aqi=no&alerts=no
-// https://api.weatherapi.com/v1/current.json?key=f1e461295192489aa71174448220607&q=St. Peterburg&aqi=no
-
 interface ApiService {
 
     @GET("forecast.json")

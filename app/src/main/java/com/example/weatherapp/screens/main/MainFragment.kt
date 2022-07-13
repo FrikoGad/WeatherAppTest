@@ -58,7 +58,7 @@ class MainFragment : ScopedFragment(), KodeinAware {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        checkPermission()
+//        checkPermission()
         viewModel = ViewModelProvider(this, viewModelFactory)
             .get(MainFragmentViewModel::class.java)
         bindUI()
