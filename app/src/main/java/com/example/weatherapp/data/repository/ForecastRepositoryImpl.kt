@@ -5,18 +5,24 @@ import com.example.weatherapp.data.CurrentWeatherDao
 import com.example.weatherapp.data.db.WeatherLocationDao
 import com.example.weatherapp.data.db.entity.current.Location
 import com.example.weatherapp.data.db.unitlocalized.UnitSpecificCurrentWeatherEntry
+import com.example.weatherapp.data.network.ApiService
 import com.example.weatherapp.data.network.WeatherNetworkDataSource
+import com.example.weatherapp.data.network.response.WeatherDaysResponse
 import com.example.weatherapp.data.network.response.WeatherResponse
 import com.example.weatherapp.data.provider.LocationProvider
+import com.example.weatherapp.utils.ALERTS
 import com.example.weatherapp.utils.AQI
+import com.example.weatherapp.utils.DAYS
 import kotlinx.coroutines.*
 import org.threeten.bp.ZonedDateTime
+import retrofit2.Response
 
 class ForecastRepositoryImpl(
     private val currentWeatherDao: CurrentWeatherDao,
     private val weatherLocationDao: WeatherLocationDao,
     private val weatherNetworkDataSourse: WeatherNetworkDataSource,
-    private val locationProvider: LocationProvider
+    private val locationProvider: LocationProvider,
+    private val apiService: ApiService
 ) : ForecastRepository {
 
     init {
@@ -68,5 +74,14 @@ class ForecastRepositoryImpl(
     private fun isFetchCurrentNeeded(lastFetchTime: ZonedDateTime): Boolean {
         val thirtyMinutesAgo = ZonedDateTime.now().minusMinutes(30)
         return lastFetchTime.isBefore(thirtyMinutesAgo)
+    }
+
+    override suspend fun getDaysWeather() : Response<WeatherDaysResponse> {
+        return apiService.getDaysWeatherAsync(
+            locationProvider.getPreferredLocationString(),
+            DAYS,
+            AQI,
+            ALERTS
+        )
     }
 }

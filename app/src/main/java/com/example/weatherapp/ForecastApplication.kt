@@ -15,6 +15,8 @@ import com.example.weatherapp.data.provider.UnitProvider
 import com.example.weatherapp.data.provider.UnitProviderImpl
 import com.example.weatherapp.data.repository.ForecastRepository
 import com.example.weatherapp.data.repository.ForecastRepositoryImpl
+import com.example.weatherapp.screens.days.DaysFragmentViewModel
+import com.example.weatherapp.screens.days.DaysFragmentViewModelFactory
 import com.example.weatherapp.screens.main.MainFragmentViewModelFactory
 import com.google.android.gms.location.LocationServices
 import com.jakewharton.threetenabp.AndroidThreeTen
@@ -38,9 +40,11 @@ class ForecastApplication : Application(), KodeinAware {
         bind<WeatherNetworkDataSource>() with singleton { WeatherNetworkDataSourceImpl(instance()) }
         bind() from provider { LocationServices.getFusedLocationProviderClient(instance<Context>()) }
         bind<LocationProvider>() with singleton { LocationProviderImpl(instance(), instance()) }
-        bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(), instance(), instance(), instance())}
+        bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(), instance(), instance(), instance(), instance())}
         bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
         bind() from provider { MainFragmentViewModelFactory(instance(), instance()) }
+        bind() from provider { DaysFragmentViewModelFactory(instance()) }
+        bind() from provider { DaysFragmentViewModel(instance()) }
     }
 
     override fun onCreate() {

@@ -8,6 +8,7 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -21,7 +22,7 @@ interface ApiService {
         @Query("days") days: String = "5",
         @Query("aqi") aqi: String = "no",
         @Query("alerts") alerts: String = "no"
-    ) : Deferred<WeatherDaysResponse>
+    ) : Response<WeatherDaysResponse>
 
     @GET("current.json")
     fun getCurrentWeatherAsync(

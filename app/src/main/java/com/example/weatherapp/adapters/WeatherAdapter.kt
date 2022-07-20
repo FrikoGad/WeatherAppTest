@@ -6,13 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.weatherapp.R
+import com.example.weatherapp.data.db.entity.others.Forecastday
 import com.example.weatherapp.data.network.response.WeatherDaysResponse
 import com.example.weatherapp.utils.MAIN
 import kotlinx.android.synthetic.main.list_item.view.*
 
 class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.ItemViewHolder>() {
 
-    var listWeatherItem = emptyList<WeatherDaysResponse>()
+    var listWeatherItem = emptyList<Forecastday>()
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
@@ -23,12 +24,12 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.ItemViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.itemView.item_date.text = listWeatherItem[position].forecast.forecastday[position].hour[position].time
-        holder.itemView.item_temp.text = listWeatherItem[position].forecast.forecastday[position].hour[position].temp_c.toString()
-        holder.itemView.item_condition.text = listWeatherItem[position].forecast.forecastday[position].hour[position].condition.text
+        holder.itemView.item_date.text = listWeatherItem[position].hour[position].time
+        holder.itemView.item_temp.text = listWeatherItem[position].hour[position].temp_c.toString()
+        holder.itemView.item_condition.text = listWeatherItem[position].hour[position].condition.text
 
         Glide.with(MAIN)
-            .load(listWeatherItem[position].forecast.forecastday[position].hour[position].condition.icon)
+            .load(listWeatherItem[position].hour[position].condition.icon)
             .centerCrop()
             .placeholder(R.drawable.ic_launcher_background)
             .into(holder.itemView.item_iv_condition)
@@ -36,6 +37,11 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.ItemViewHolder>() {
 
     override fun getItemCount(): Int {
         return listWeatherItem.size
+    }
+
+    fun setList(list: List<Forecastday>) {
+        listWeatherItem = list
+        notifyDataSetChanged()
     }
 
 }
